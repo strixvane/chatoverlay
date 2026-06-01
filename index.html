@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OBS Twitch Chat Overlay</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+
+    <div id="chat-container"></div>
+
+    <script type="module">
+        import tmi from 'https://esm.sh/tmi.js';
+        import { parseEmotes } from 'https://esm.sh/emotettv';
+
+        // ==========================================
+        //               USER SETTINGS
+        // ==========================================
+        const TWITCH_CHANNEL = 'your_username_here'; // Replace with your Twitch username
+        const MAX_MESSAGES = 15;               // Max number of messages on screen
+
+        const ENABLE_FADE_OUT = true;          // Change to 'false' to keep messages on screen permanently
+        const MESSAGE_LIFETIME_MS = 20000;     // How long before messages fade out (in milliseconds)
+        // ==========================================
+
+        const chatContainer = document.getElementById('chat-container');
+
+        const client = new tmi.Client({
+            channels: [TWITCH_CHANNEL]
+        });
+
+        client.connect().catch(console.error);
+
+        client.on('message', async (channel, tags, message, self) => {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message');
+
+            const userColor = tags['color'] || '#9146FF';
+            const displayName = tags['display-name'] || tags['username'];
+
+            const parsedEmotes = await parseEmotes(message, tags.emotes, {
+                channelId: tags['room-id']
+            });
+
+            messageElement.innerHTML = `
+                <span class="username" style="color: ${userColor};">${displayName}:</span>
+                <span class="message-text">${parsedEmotes.toHTML()}</span>
+            `;
+
+            chatContainer.appendChild(messageElement);
+
+            while (chatContainer.children.length > MAX_MESSAGES) {
+                chatContainer.removeChild(chatContainer.firstChild);
+            }
+
+            if (ENABLE_FADE_OUT) {
+                setTimeout(() => {
+                    messageElement.classList.add('fade-out');
+
+                    messageElement.addEventListener('animationend', () => {
+                        if (messageElement.parentNode) {
+                            messageElement.parentNode.removeChild(messageElement);
+                        }
+                    });
+                }, MESSAGE_LIFETIME_MS);
+            }
+        });
+    </script>
+</body>
+</html>
