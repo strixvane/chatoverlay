@@ -63,15 +63,17 @@
 
         <fieldset>
             <legend>Username Styling</legend>
-            <div class="form-group">
-                <label for="userFontFamily">Font Family</label>
-                <input type="text" id="userFontFamily" value="'Helvetica Neue', Helvetica, Arial, sans-serif">
-            </div>
             <div class="form-row">
+                <div class="form-group" style="flex: 2;">
+                    <label for="userFontFamily">Font Family</label>
+                    <input type="text" id="userFontFamily" value="'Helvetica Neue', Helvetica, Arial, sans-serif">
+                </div>
                 <div class="form-group">
                     <label for="userFontSize">Size (px)</label>
                     <input type="number" id="userFontSize" value="16" min="8" max="72">
                 </div>
+            </div>
+            <div class="form-row">
                 <div class="form-group">
                     <label for="userFontWeight">Weight</label>
                     <select id="userFontWeight">
@@ -81,33 +83,66 @@
                         <option value="900">Black (900)</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="userFontStyle">Style</label>
+                    <select id="userFontStyle">
+                        <option value="normal" selected>Normal</option>
+                        <option value="italic">Italic</option>
+                    </select>
+                </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="userShadowColor">Drop Shadow Color</label>
+                    <label for="userTextTransform">Text Transform</label>
+                    <select id="userTextTransform">
+                        <option value="none" selected>Normal</option>
+                        <option value="uppercase">UPPERCASE</option>
+                        <option value="lowercase">lowercase</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="userLetterSpacing">Spacing (px)</label>
+                    <input type="number" id="userLetterSpacing" value="0" min="-5" max="20" step="0.5">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="userShadowColor">Shadow Color</label>
                     <input type="color" id="userShadowColor" value="#000000">
                 </div>
                 <div class="form-group">
-                    <label for="userShadowBlur">Shadow Blur (px)</label>
+                    <label for="userShadowBlur">Blur (px)</label>
                     <input type="number" id="userShadowBlur" value="2" min="0" max="20">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="userShadowOffsetX">Shadow X (px)</label>
+                    <input type="number" id="userShadowOffsetX" value="1" min="-20" max="20">
+                </div>
+                <div class="form-group">
+                    <label for="userShadowOffsetY">Shadow Y (px)</label>
+                    <input type="number" id="userShadowOffsetY" value="1" min="-20" max="20">
                 </div>
             </div>
         </fieldset>
 
         <fieldset>
             <legend>Message Text Styling</legend>
-            <div class="form-group">
-                <label for="msgFontFamily">Font Family</label>
-                <input type="text" id="msgFontFamily" value="'Helvetica Neue', Helvetica, Arial, sans-serif">
+            <div class="form-row">
+                <div class="form-group" style="flex: 2;">
+                    <label for="msgFontFamily">Font Family</label>
+                    <input type="text" id="msgFontFamily" value="'Helvetica Neue', Helvetica, Arial, sans-serif">
+                </div>
+                <div class="form-group">
+                    <label for="msgFontSize">Size (px)</label>
+                    <input type="number" id="msgFontSize" value="16" min="8" max="72">
+                </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
                     <label for="msgColor">Text Color</label>
                     <input type="color" id="msgColor" value="#f8f8f8">
-                </div>
-                <div class="form-group">
-                    <label for="msgFontSize">Size (px)</label>
-                    <input type="number" id="msgFontSize" value="16" min="8" max="72">
                 </div>
                 <div class="form-group">
                     <label for="msgFontWeight">Weight</label>
@@ -120,17 +155,44 @@
             </div>
             <div class="form-row">
                 <div class="form-group">
-                    <label for="msgShadowColor">Drop Shadow Color</label>
+                    <label for="msgFontStyle">Style</label>
+                    <select id="msgFontStyle">
+                        <option value="normal" selected>Normal</option>
+                        <option value="italic">Italic</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="msgLetterSpacing">Spacing (px)</label>
+                    <input type="number" id="msgLetterSpacing" value="0" min="-5" max="20" step="0.5">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="msgShadowColor">Shadow Color</label>
                     <input type="color" id="msgShadowColor" value="#000000">
                 </div>
                 <div class="form-group">
-                    <label for="msgShadowBlur">Shadow Blur (px)</label>
+                    <label for="msgShadowBlur">Blur (px)</label>
                     <input type="number" id="msgShadowBlur" value="2" min="0" max="20">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="msgShadowOffsetX">Shadow X (px)</label>
+                    <input type="number" id="msgShadowOffsetX" value="1" min="-20" max="20">
+                </div>
+                <div class="form-group">
+                    <label for="msgShadowOffsetY">Shadow Y (px)</label>
+                    <input type="number" id="msgShadowOffsetY" value="1" min="-20" max="20">
                 </div>
             </div>
         </fieldset>
 
-        <button onclick="generateSettings()">Save Settings</button>
+        <button onclick="generateOBSUrl()" style="background-color: #9146FF;">Copy OBS URL</button>
+        <div class="form-group" style="margin-top: 15px;">
+            <label for="obsUrlOutput">Your Custom OBS URL</label>
+            <input type="text" id="obsUrlOutput" readonly style="background-color: #000; color: #ff9900; border-color: #ff9900; text-align: center;" placeholder="URL will appear here...">
+        </div>
     </div>
 
     <div class="preview-container">
@@ -176,15 +238,24 @@
                 userFontFamily: document.getElementById('userFontFamily').value,
                 userFontSize: document.getElementById('userFontSize').value,
                 userFontWeight: document.getElementById('userFontWeight').value,
+                userFontStyle: document.getElementById('userFontStyle').value,
+                userTextTransform: document.getElementById('userTextTransform').value,
+                userLetterSpacing: document.getElementById('userLetterSpacing').value,
                 userShadowColor: document.getElementById('userShadowColor').value,
                 userShadowBlur: document.getElementById('userShadowBlur').value,
+                userShadowOffsetX: document.getElementById('userShadowOffsetX').value,
+                userShadowOffsetY: document.getElementById('userShadowOffsetY').value,
 
                 msgFontFamily: document.getElementById('msgFontFamily').value,
                 msgColor: document.getElementById('msgColor').value,
                 msgFontSize: document.getElementById('msgFontSize').value,
                 msgFontWeight: document.getElementById('msgFontWeight').value,
+                msgFontStyle: document.getElementById('msgFontStyle').value,
+                msgLetterSpacing: document.getElementById('msgLetterSpacing').value,
                 msgShadowColor: document.getElementById('msgShadowColor').value,
                 msgShadowBlur: document.getElementById('msgShadowBlur').value,
+                msgShadowOffsetX: document.getElementById('msgShadowOffsetX').value,
+                msgShadowOffsetY: document.getElementById('msgShadowOffsetY').value,
             };
         }
 
@@ -203,14 +274,17 @@
                 msg.style.borderRadius = settings.pillboxRadius + 'px';
                 msg.style.padding = settings.pillboxPadding;
                 msg.style.border = settings.pillboxBorder;
-                msg.style.marginBottom = '0'; // overridden by flex gap
+                msg.style.marginBottom = '0';
             });
 
             usernames.forEach(user => {
                 user.style.fontFamily = settings.userFontFamily;
                 user.style.fontSize = settings.userFontSize + 'px';
                 user.style.fontWeight = settings.userFontWeight;
-                user.style.textShadow = `1px 1px ${settings.userShadowBlur}px ${settings.userShadowColor}`;
+                user.style.fontStyle = settings.userFontStyle;
+                user.style.textTransform = settings.userTextTransform;
+                user.style.letterSpacing = settings.userLetterSpacing + 'px';
+                user.style.textShadow = `${settings.userShadowOffsetX}px ${settings.userShadowOffsetY}px ${settings.userShadowBlur}px ${settings.userShadowColor}`;
             });
 
             messageTexts.forEach(text => {
@@ -218,7 +292,9 @@
                 text.style.color = settings.msgColor;
                 text.style.fontSize = settings.msgFontSize + 'px';
                 text.style.fontWeight = settings.msgFontWeight;
-                text.style.textShadow = `1px 1px ${settings.msgShadowBlur}px ${settings.msgShadowColor}`;
+                text.style.fontStyle = settings.msgFontStyle;
+                text.style.letterSpacing = settings.msgLetterSpacing + 'px';
+                text.style.textShadow = `${settings.msgShadowOffsetX}px ${settings.msgShadowOffsetY}px ${settings.msgShadowBlur}px ${settings.msgShadowColor}`;
             });
         }
 
@@ -228,21 +304,35 @@
 
         window.addEventListener('DOMContentLoaded', updatePreview);
 
-        function generateSettings() {
+        function generateOBSUrl() {
             const settings = getSettings();
-            const fileContent = `const OBS_CHAT_SETTINGS = ${JSON.stringify(settings, null, 4)};`;
+            const jsonString = JSON.stringify(settings);
+            const encodedSettings = btoa(encodeURIComponent(jsonString));
 
-            const blob = new Blob([fileContent], { type: 'text/javascript' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'settings.js';
-            document.body.appendChild(a);
-            a.click();
-            setTimeout(() => {
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            }, 0);
+            const currentPath = window.location.href;
+            const targetPath = currentPath.replace('settings.html', 'index.html');
+            const finalUrl = `${targetPath}?cfg=${encodedSettings}`;
+
+            const outputNode = document.getElementById('obsUrlOutput');
+            outputNode.value = finalUrl;
+            outputNode.select();
+
+            try {
+                navigator.clipboard.writeText(finalUrl);
+                const btn = document.querySelector('button');
+                const originalText = btn.innerText;
+                btn.innerText = "Copied to Clipboard!";
+                btn.style.backgroundColor = "#00FF00";
+                btn.style.color = "#000";
+
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.backgroundColor = "#9146FF";
+                    btn.style.color = "#FFF";
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy to clipboard', err);
+            }
         }
     </script>
 </body>
