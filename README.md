@@ -2,6 +2,8 @@
 
 A local first chat overlay using TMI.js and EmoteTTV to present chat in a clean and readable manner. Customization is easy with CSS and can be shared by just pasting over the style.css file with a new one!
 
+<img width="943" height="663" alt="Screenshot_20260604_044533" src="https://github.com/user-attachments/assets/cdf67c88-57aa-492c-9c7c-628a89547bcc" />
+
 ## Features
 
 - **Local First:** Runs natively as a local file within OBS.
