@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OBS Chat Overlay - Settings</title>
+    <link rel="stylesheet" href="settings-style.css" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <h2>Chat Overlay Settings</h2>
+
+        <fieldset>
+            <legend>General Configuration</legend>
+            <div class="form-group">
+                <label for="twitchChannel">Twitch Channel</label>
+                <input type="text" id="twitchChannel" value="OwlishGeorge">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="maxMessages">Max Messages</label>
+                    <input type="number" id="maxMessages" value="15" min="1" max="100">
+                </div>
+                <div class="form-group">
+                    <label for="messageLifetime">Fade Out (ms)</label>
+                    <input type="number" id="messageLifetime" value="20000" min="0" step="1000">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Pillbox & Layout</legend>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pillboxBgColor">Background Color</label>
+                    <input type="color" id="pillboxBgColor" value="#000000">
+                </div>
+                <div class="form-group">
+                    <label for="pillboxOpacity">Opacity (%)</label>
+                    <input type="range" id="pillboxOpacity" value="65" min="0" max="100">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pillboxRadius">Border Radius (px)</label>
+                    <input type="number" id="pillboxRadius" value="8" min="0" max="50">
+                </div>
+                <div class="form-group">
+                    <label for="messageGap">Gap Between Messages (px)</label>
+                    <input type="number" id="messageGap" value="8" min="0" max="50">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pillboxPadding">Padding (px)</label>
+                    <input type="text" id="pillboxPadding" value="8px 12px" placeholder="e.g. 8px 12px">
+                </div>
+                <div class="form-group">
+                    <label for="pillboxBorder">Border (CSS)</label>
+                    <input type="text" id="pillboxBorder" value="none" placeholder="e.g. 2px solid #fff">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Username Styling</legend>
+            <div class="form-group">
+                <label for="userFontFamily">Font Family</label>
+                <input type="text" id="userFontFamily" value="'Helvetica Neue', Helvetica, Arial, sans-serif">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="userFontSize">Size (px)</label>
+                    <input type="number" id="userFontSize" value="16" min="8" max="72">
+                </div>
+                <div class="form-group">
+                    <label for="userFontWeight">Weight</label>
+                    <select id="userFontWeight">
+                        <option value="400">Normal (400)</option>
+                        <option value="600">Semi-Bold (600)</option>
+                        <option value="800" selected>Bold (800)</option>
+                        <option value="900">Black (900)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="userShadowColor">Drop Shadow Color</label>
+                    <input type="color" id="userShadowColor" value="#000000">
+                </div>
+                <div class="form-group">
+                    <label for="userShadowBlur">Shadow Blur (px)</label>
+                    <input type="number" id="userShadowBlur" value="2" min="0" max="20">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Message Text Styling</legend>
+            <div class="form-group">
+                <label for="msgFontFamily">Font Family</label>
+                <input type="text" id="msgFontFamily" value="'Helvetica Neue', Helvetica, Arial, sans-serif">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="msgColor">Text Color</label>
+                    <input type="color" id="msgColor" value="#f8f8f8">
+                </div>
+                <div class="form-group">
+                    <label for="msgFontSize">Size (px)</label>
+                    <input type="number" id="msgFontSize" value="16" min="8" max="72">
+                </div>
+                <div class="form-group">
+                    <label for="msgFontWeight">Weight</label>
+                    <select id="msgFontWeight">
+                        <option value="400" selected>Normal (400)</option>
+                        <option value="600">Semi-Bold (600)</option>
+                        <option value="800">Bold (800)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="msgShadowColor">Drop Shadow Color</label>
+                    <input type="color" id="msgShadowColor" value="#000000">
+                </div>
+                <div class="form-group">
+                    <label for="msgShadowBlur">Shadow Blur (px)</label>
+                    <input type="number" id="msgShadowBlur" value="2" min="0" max="20">
+                </div>
+            </div>
+        </fieldset>
+
+        <button onclick="generateSettings()">Save Settings</button>
+    </div>
+
+    <div class="preview-container">
+        <h3 style="margin-top: 0; color: #FFF; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Live Preview</h3>
+        <div id="preview-box">
+            <div class="chat-message">
+                <span class="username" style="color: #9146FF;">OwlishGeorge:</span>
+                <span class="message-text">Welcome to the stream everyone!</span>
+            </div>
+            <div class="chat-message">
+                <span class="username" style="color: #FF0000;">Strixvane:</span>
+                <span class="message-text">This new overlay looks incredibly clean.</span>
+            </div>
+            <div class="chat-message">
+                <span class="username" style="color: #00FF00;">GenericViewer:</span>
+                <span class="message-text">PogChamp</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function hexToRgba(hex, opacityPercentage) {
+            let r = parseInt(hex.slice(1, 3), 16),
+                g = parseInt(hex.slice(3, 5), 16),
+                b = parseInt(hex.slice(5, 7), 16),
+                a = opacityPercentage / 100;
+            return `rgba(${r}, ${g}, ${b}, ${a})`;
+        }
+
+        function getSettings() {
+            return {
+                twitchChannel: document.getElementById('twitchChannel').value,
+                maxMessages: parseInt(document.getElementById('maxMessages').value),
+                messageLifetimeMs: parseInt(document.getElementById('messageLifetime').value),
+
+                pillboxBgColor: document.getElementById('pillboxBgColor').value,
+                pillboxOpacity: document.getElementById('pillboxOpacity').value,
+                pillboxRadius: document.getElementById('pillboxRadius').value,
+                pillboxPadding: document.getElementById('pillboxPadding').value,
+                pillboxBorder: document.getElementById('pillboxBorder').value,
+                messageGap: document.getElementById('messageGap').value,
+
+                userFontFamily: document.getElementById('userFontFamily').value,
+                userFontSize: document.getElementById('userFontSize').value,
+                userFontWeight: document.getElementById('userFontWeight').value,
+                userShadowColor: document.getElementById('userShadowColor').value,
+                userShadowBlur: document.getElementById('userShadowBlur').value,
+
+                msgFontFamily: document.getElementById('msgFontFamily').value,
+                msgColor: document.getElementById('msgColor').value,
+                msgFontSize: document.getElementById('msgFontSize').value,
+                msgFontWeight: document.getElementById('msgFontWeight').value,
+                msgShadowColor: document.getElementById('msgShadowColor').value,
+                msgShadowBlur: document.getElementById('msgShadowBlur').value,
+            };
+        }
+
+        function updatePreview() {
+            const settings = getSettings();
+            const previewBox = document.getElementById('preview-box');
+            const messages = previewBox.querySelectorAll('.chat-message');
+            const usernames = previewBox.querySelectorAll('.username');
+            const messageTexts = previewBox.querySelectorAll('.message-text');
+
+            previewBox.style.gap = settings.messageGap + 'px';
+
+            const bgColorWithOpacity = hexToRgba(settings.pillboxBgColor, settings.pillboxOpacity);
+            messages.forEach(msg => {
+                msg.style.backgroundColor = bgColorWithOpacity;
+                msg.style.borderRadius = settings.pillboxRadius + 'px';
+                msg.style.padding = settings.pillboxPadding;
+                msg.style.border = settings.pillboxBorder;
+                msg.style.marginBottom = '0'; // overridden by flex gap
+            });
+
+            usernames.forEach(user => {
+                user.style.fontFamily = settings.userFontFamily;
+                user.style.fontSize = settings.userFontSize + 'px';
+                user.style.fontWeight = settings.userFontWeight;
+                user.style.textShadow = `1px 1px ${settings.userShadowBlur}px ${settings.userShadowColor}`;
+            });
+
+            messageTexts.forEach(text => {
+                text.style.fontFamily = settings.msgFontFamily;
+                text.style.color = settings.msgColor;
+                text.style.fontSize = settings.msgFontSize + 'px';
+                text.style.fontWeight = settings.msgFontWeight;
+                text.style.textShadow = `1px 1px ${settings.msgShadowBlur}px ${settings.msgShadowColor}`;
+            });
+        }
+
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('input', updatePreview);
+        });
+
+        window.addEventListener('DOMContentLoaded', updatePreview);
+
+        function generateSettings() {
+            const settings = getSettings();
+            const fileContent = `const OBS_CHAT_SETTINGS = ${JSON.stringify(settings, null, 4)};`;
+
+            const blob = new Blob([fileContent], { type: 'text/javascript' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'settings.js';
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 0);
+        }
+    </script>
+</body>
+</html>
